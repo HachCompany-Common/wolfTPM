@@ -7520,7 +7520,7 @@ int wolfTPM2_CSR_SetSubject(WOLFTPM2_DEV* dev, WOLFTPM2_CSR* csr,
 int wolfTPM2_CSR_SetKeyUsage(WOLFTPM2_DEV* dev, WOLFTPM2_CSR* csr,
     const char* keyUsage)
 {
-    int rc;
+    int rc = 0;
 
     if (csr == NULL) {
         return BAD_FUNC_ARG;
