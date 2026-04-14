@@ -7241,6 +7241,7 @@ typedef struct DNTags {
     size_t certNameOff;
 } DNTags;
 
+//#ifdef OPENSSL_EXTRA
 static int CSR_Parse_DN(CertName* name, const char* subject)
 {
     int rc = 0, i;
@@ -7289,6 +7290,7 @@ static int CSR_Parse_DN(CertName* name, const char* subject)
     }
     return rc;
 }
+//#endif /* OPENSSL_EXTRA */
 
 typedef struct CSRKey {
     int keyType;
@@ -7502,6 +7504,7 @@ int wolfTPM2_CSR_SetCustomExt(WOLFTPM2_DEV* dev, WOLFTPM2_CSR* csr,
     return rc;
 }
 
+//#ifdef OPENSSL_EXTRA
 int wolfTPM2_CSR_SetSubject(WOLFTPM2_DEV* dev, WOLFTPM2_CSR* csr,
     const char* subject)
 {
@@ -7509,9 +7512,10 @@ int wolfTPM2_CSR_SetSubject(WOLFTPM2_DEV* dev, WOLFTPM2_CSR* csr,
     if (csr != NULL && subject != NULL) {
         rc = CSR_Parse_DN(&csr->req.subject, subject);
     }
-    (void)dev; /* not used */
+    (void)dev;
     return rc;
 }
+//#endif
 
 int wolfTPM2_CSR_SetKeyUsage(WOLFTPM2_DEV* dev, WOLFTPM2_CSR* csr,
     const char* keyUsage)
